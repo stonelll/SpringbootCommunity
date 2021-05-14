@@ -18,11 +18,13 @@ public class LoggerTests {
     @Test
     public void testLogger(){
         System.out.println(logger.getName());
-        
+
         logger.debug("debug Log");
         logger.info("info Log");
         logger.warn("warn Log");
         logger.error("error Log");
+
+        System.out.println("测试更新git");
     }
 
 }
