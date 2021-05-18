@@ -1,12 +1,15 @@
 package com.nowcoder.community.controller;
 
+import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
@@ -104,5 +107,48 @@ public class AlphaController {
         emp.put("salary", 8000.00);
         return emp;
     }
+
+    // cookies示例
+    @RequestMapping(path = "/cookie/set", method = RequestMethod.GET)
+    @ResponseBody
+    public String setCookie(HttpServletResponse response) {
+        //创建cookie
+        Cookie cookie = new Cookie("code", CommunityUtil.generaterUUID());
+        //设置cookie生效的范围, 就是访问什么路径的时候生效
+        cookie.setPath("/community/alpha");
+        //设置cookie的生存时间 (如果不设置,那么就是默认将cookie保存在浏览器(客服端)的内存里面,那么客服端关机了,cookie就消失了,但如果
+        //设置了cookie的生存时间, 那么就会保存在浏览器的硬盘中, 并时间到了就会清除.
+        cookie.setMaxAge(60 * 10);
+        // 发送cookie
+        response.addCookie(cookie);
+
+
+        return "set cookie";
+    }
+
+    @RequestMapping(path = "/cookie/get", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCookie(@CookieValue("code") String code) {
+        return code;
+    }
+
+    // session示例
+    @RequestMapping(path = "/session/set", method = RequestMethod.GET)
+    @ResponseBody
+    public String setSession(HttpSession session) {
+        session.setAttribute("id",1);
+        session.setAttribute("name", "Test");
+        return "set session";
+    }
+
+    @RequestMapping(path = "/session/get", method = RequestMethod.GET)
+    @ResponseBody
+    public String getSession(HttpSession session) {
+        System.out.println(session.getAttribute("id"));
+        System.out.println(session.getAttribute("name"));
+
+        return "get session";
+    }
+
 }
 
