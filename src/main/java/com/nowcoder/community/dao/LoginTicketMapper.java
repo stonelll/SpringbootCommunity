@@ -4,6 +4,7 @@ import com.nowcoder.community.entity.LoginTicket;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
+@Deprecated //声明这个组件不推荐使用了
 public interface LoginTicketMapper {
     /*
     * 一般来说通过dao层来实现对数据的增删改查有2种方式

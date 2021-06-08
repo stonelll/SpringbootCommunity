@@ -25,4 +25,6 @@ public class HostHolder {
     }
 
 
+    public void setUsers() {
+    }
 }

@@ -16,6 +16,15 @@ public interface DiscussPostMapper {
     int selectDiscussPostRows(@Param("userId") int userId);
 
 
+    //增加帖子的方法
+    int insertDiscussPost(DiscussPost discussPost);
+
+    //查询贴子的详情
+    DiscussPost selectDiscussPost(int id);
+
+    //增加帖子评论的方法
+    int updateCommentCount(int id, int commentCount);
+
 
 
 

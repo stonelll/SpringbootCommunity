@@ -30,6 +30,6 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
                 return false;
             }
         }
-        return true;//测试
+        return true;
     }
 }
