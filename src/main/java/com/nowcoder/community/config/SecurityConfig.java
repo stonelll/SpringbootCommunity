@@ -3,6 +3,7 @@ package com.nowcoder.community.config;
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
     protected void configure(HttpSecurity http) throws Exception {
         // 授权
         http.authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(
                         "/user/setting",
                         "/user/upload",
