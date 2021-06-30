@@ -18,6 +18,9 @@ public class RedisKeyUtil {
     private static final String PREFIX_UV = "uv";
     // dau（日活跃用户）
     private static final String PREFIX_DAU = "dau";
+    // 帖子(用来热度排名)
+    private static final String PREFIX_POST = "post";
+
 
 
     //生成某个实体的赞
@@ -78,6 +81,11 @@ public class RedisKeyUtil {
     // 返回区间dau
     public static String getDauKey(String startDate, String endDate) {
         return PREFIX_DAU + SPLIT + startDate + SPLIT + endDate;
+    }
+
+    // 返回帖子分数
+    public static String getPostScoreKey() {
+        return PREFIX_POST + SPLIT + "score";
     }
 
 
